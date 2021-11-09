@@ -1,15 +1,36 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header } from './components';
+import {
+  Header,
+  Home,
+  SingleItem,
+  Watched,
+  Watchlist,
+  Watchtime,
+} from './components';
+import { GlobalProvider } from 'context';
 const App = () => {
   return (
-    <Router>
-      <Header />
-      {/* <Routes></Routes> */}
-      <div className="App">
-        <h1>Hello</h1>
-      </div>
-    </Router>
+    <GlobalProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/:type/:id" element={<SingleItem />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/watchlist" element={<Watchlist />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/watched" element={<Watched />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/watchtime" element={<Watchtime />}></Route>
+        </Routes>
+      </Router>
+    </GlobalProvider>
   );
 };
 
