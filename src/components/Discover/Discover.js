@@ -40,12 +40,15 @@ export const Discover = () => {
               value={searchQuery}
             />
           </div>
-          <button className="btn" onClick={() => fetchShows(searchQuery)}>
-            Search Tv Shows
-          </button>
-          <button className="btn" onClick={() => fetchMovies(searchQuery)}>
-            Search Movies
-          </button>
+          <div className="controls">
+            <button className="btn" onClick={() => fetchShows(searchQuery)}>
+              Search Tv Shows
+            </button>
+            <button className="btn" onClick={() => fetchMovies(searchQuery)}>
+              Search Movies
+            </button>
+          </div>
+
           {movies?.length > 0 && (
             <ul className="results">
               {movies.map(movie => (
