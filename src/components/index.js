@@ -6,3 +6,5 @@ export * from './SingleItem';
 export * from './Watched';
 export * from './Watchlist';
 export * from './Watchtime';
+export * from './Discover';
+export * from './DiscoverCard';
