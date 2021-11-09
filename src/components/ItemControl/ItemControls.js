@@ -15,7 +15,6 @@ export const ItemControls = ({ type, movie }) => {
       {type === 'watchlist' && (
         <>
           <button className="ctrl-btn" onClick={() => addMovieToWatched(movie)}>
-            {/* <faEye></faEye> */}
             <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
           </button>
 
