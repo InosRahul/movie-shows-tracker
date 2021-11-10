@@ -20,12 +20,14 @@ export const Popular = () => {
                 </Link>
               ))}
             </div>
-            <button
-              className="btn btn-main"
-              onClick={() => setLoadMorePopAll(true)}
-            >
-              Load More
-            </button>
+            <div className="home">
+              <button
+                className="btn btn-main"
+                onClick={() => setLoadMorePopAll(true)}
+              >
+                Load More
+              </button>
+            </div>
           </>
         ) : (
           <h2 className="no-movies">

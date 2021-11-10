@@ -20,12 +20,14 @@ export const Home = () => {
                 </Link>
               ))}
             </div>
-            <button
-              className="btn btn-main"
-              onClick={() => setIsLoadingMore(true)}
-            >
-              Load More
-            </button>
+            <div className="home">
+              <button
+                className="btn btn-main home"
+                onClick={() => setIsLoadingMore(true)}
+              >
+                Load More
+              </button>
+            </div>
           </>
         ) : (
           <h2 className="no-movies">

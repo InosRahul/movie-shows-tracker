@@ -329,3 +329,9 @@ header .nav-links li:last-child {
 .container .watchtime button {
   margin-left: 10px;
 }
+
+.container .home button {
+  margin: 10px auto;
+  display: block;
+  align-items: center;
+}

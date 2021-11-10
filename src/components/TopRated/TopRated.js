@@ -20,12 +20,14 @@ export const TopRated = () => {
                 </Link>
               ))}
             </div>
-            <button
-              className="btn btn-main"
-              onClick={() => setLoadMoreTopRated(true)}
-            >
-              Load More
-            </button>
+            <div className="home">
+              <button
+                className="btn btn-main"
+                onClick={() => setLoadMoreTopRated(true)}
+              >
+                Load More
+              </button>
+            </div>
           </>
         ) : (
           <h2 className="no-movies">
