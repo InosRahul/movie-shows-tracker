@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
 import { apiCalls } from 'helpers';
 
-export const useFetchAll = () => {
+export const useFetchTopRatedAll = () => {
   const initialState = {
     page: 0,
     results: [],
     total_pages: 0,
     total_results: 0,
   };
-  const [state, setState] = useState(initialState);
+  const [topRated, setTopRated] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loadMoreTopRated, setLoadMoreTopRated] = useState(false);
 
-  const fetchAll = async page => {
+  const fetchPopAll = async page => {
     try {
       setError(false);
       setLoading(true);
 
-      const movies = await apiCalls.fetchMovies(page);
-      const shows = await apiCalls.fetchShows(page);
-      setState(prev => ({
+      const movies = await apiCalls.fetchTopRatedMovies(page);
+      const shows = await apiCalls.fetchTopRatedShows(page);
+      setTopRated(prev => ({
         ...movies,
         ...shows,
         results:
@@ -35,15 +35,15 @@ export const useFetchAll = () => {
   };
 
   useEffect(() => {
-    fetchAll(1);
+    fetchPopAll(1);
   }, []);
 
   useEffect(() => {
-    if (!isLoadingMore) return;
+    if (!loadMoreTopRated) return;
 
-    fetchAll(state.page + 1);
-    setIsLoadingMore(false);
-  }, [isLoadingMore, state.page]);
+    fetchPopAll(topRated.page + 1);
+    setLoadMoreTopRated(false);
+  }, [loadMoreTopRated, topRated.page]);
 
-  return { state, loading, error, setIsLoadingMore };
+  return { topRated, loading, error, setLoadMoreTopRated };
 };
