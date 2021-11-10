@@ -1,20 +1,20 @@
-import { useFetchAll } from '../../hooks';
+import { useFetchTopRatedAll } from '../../hooks';
 import { ItemCard } from 'components';
 import { Link } from 'react-router-dom';
-export const Home = () => {
-  let { state, setIsLoadingMore } = useFetchAll();
+export const TopRated = () => {
+  let { topRated, setLoadMoreTopRated } = useFetchTopRatedAll();
 
   return (
     <div className="movie-page">
       <div className="container">
         <div className="header">
-          <h1 className="heading">Trending Movies and TV Shows this Week</h1>
+          <h1 className="heading">Top Rated Movies and TV Shows</h1>
         </div>
 
-        {state?.results.length > 0 ? (
+        {topRated?.results.length > 0 ? (
           <>
             <div className="movie-grid">
-              {state?.results.map(item => (
+              {topRated?.results.map(item => (
                 <Link to={`/${item.release_date ? 'movie' : 'tv'}/${item.id}`}>
                   <ItemCard movie={item} key={item.id} />
                 </Link>
@@ -22,7 +22,7 @@ export const Home = () => {
             </div>
             <button
               className="btn btn-main"
-              onClick={() => setIsLoadingMore(true)}
+              onClick={() => setLoadMoreTopRated(true)}
             >
               Load More
             </button>

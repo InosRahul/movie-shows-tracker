@@ -8,6 +8,8 @@ import {
   Watchlist,
   Watchtime,
   Discover,
+  TopRated,
+  Popular,
 } from './components';
 import { GlobalProvider } from 'context';
 
@@ -27,6 +29,12 @@ const App = () => {
         </Routes>
         <Routes>
           <Route path="/watched" element={<Watched />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/toprated" element={<TopRated />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/popular" element={<Popular />}></Route>
         </Routes>
         <Routes>
           <Route path="/watchtime" element={<Watchtime />}></Route>

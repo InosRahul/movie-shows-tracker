@@ -1,6 +1,9 @@
 import { GlobalContext } from 'context';
 import { useContext } from 'react';
 import { conversions } from 'helpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
+
 export const Watchtime = () => {
   const { watched } = useContext(GlobalContext);
   console.log(watched);
@@ -20,11 +23,6 @@ export const Watchtime = () => {
     )
     .reduce((prev, curr) => prev + curr);
 
-  //   console.log(
-  //     watched
-  //       .filter(item => item.episode_run_time)
-  //       .map(item => item.episode_run_time.find(x => x !== undefined)),
-  //   );
   let totalWatchTime = totalWatchTimeShow + totalWatchTimeMovies;
   return (
     <div className="container">
@@ -39,7 +37,6 @@ export const Watchtime = () => {
         ) : (
           <></>
         )}
-
         {totalWatchTimeShow > 0 ? (
           <h2>
             Total Watch Time Shows:{' '}
@@ -60,6 +57,19 @@ export const Watchtime = () => {
         ) : (
           <></>
         )}
+        <a
+          href={`https://twitter.com/intent/tweet?hashtags=mywatchtime&text=${conversions.timeFormat(
+            totalWatchTime,
+          )}`}
+          className="btn"
+          id="tweet-quote"
+          title="Tweet this"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FontAwesomeIcon icon={faHashtag}></FontAwesomeIcon> Tweet your
+          results
+        </a>
       </div>
     </div>
   );
