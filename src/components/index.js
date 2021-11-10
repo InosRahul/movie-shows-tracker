@@ -8,3 +8,5 @@ export * from './Watchlist';
 export * from './Watchtime';
 export * from './Discover';
 export * from './DiscoverCard';
+export * from './Popular';
+export * from './TopRated';
