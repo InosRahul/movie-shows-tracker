@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DiscoverCard } from 'components';
+import { ItemCard } from 'components';
 import { SEARCH_MOVIE_BASE_URL, SEARCH_TV_BASE_URL } from 'helpers';
 import { Link } from 'react-router-dom';
 export const Discover = () => {
@@ -11,7 +11,6 @@ export const Discover = () => {
     const movie_uri = `${SEARCH_MOVIE_BASE_URL}${searchString}`;
     console.log(searchString);
     let response = await fetch(movie_uri).then(res => res.json());
-
     let { results } = response;
     setMovies(results);
     setShows([]);
@@ -19,9 +18,7 @@ export const Discover = () => {
 
   const fetchShows = async searchString => {
     const tv_uri = `${SEARCH_TV_BASE_URL}${searchString}`;
-
     let response = await fetch(tv_uri).then(res => res.json());
-
     let { results } = response;
     setShows(results);
     console.log(results);
@@ -29,46 +26,51 @@ export const Discover = () => {
   };
 
   return (
-    <div className="add-page">
-      <div className="container">
-        <div className="add-content">
-          <div className="input-wrapper">
-            <input
-              type="text"
-              placeholder="Search for a movie"
-              onChange={e => setSearchQuery(e.target.value)}
-              value={searchQuery}
-            />
+    <>
+      <div className="add-page">
+        <div className="container">
+          <div className="add-content">
+            <div className="input-wrapper">
+              <input
+                type="text"
+                placeholder="Search for a movie"
+                onChange={e => setSearchQuery(e.target.value)}
+                value={searchQuery}
+              />
+            </div>
+            <div className="controls">
+              <button className="btn" onClick={() => fetchShows(searchQuery)}>
+                Search Tv Shows
+              </button>
+              <button className="btn" onClick={() => fetchMovies(searchQuery)}>
+                Search Movies
+              </button>
+            </div>
           </div>
-          <div className="controls">
-            <button className="btn" onClick={() => fetchShows(searchQuery)}>
-              Search Tv Shows
-            </button>
-            <button className="btn" onClick={() => fetchMovies(searchQuery)}>
-              Search Movies
-            </button>
-          </div>
-
+        </div>
+      </div>
+      <div className="movie-page">
+        <div className="container">
           {movies?.length > 0 && (
-            <ul className="results">
+            <div className="movie-grid">
               {movies.map(movie => (
                 <Link to={`/movie/${movie.id}`}>
-                  <DiscoverCard item={movie} />
+                  <ItemCard movie={movie} />
                 </Link>
               ))}
-            </ul>
+            </div>
           )}
           {shows?.length > 0 && (
-            <ul className="results">
+            <div className="movie-grid">
               {shows.map(show => (
                 <Link to={`/tv/${show.id}`}>
-                  <DiscoverCard item={show} />
+                  <ItemCard movie={show} />
                 </Link>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
