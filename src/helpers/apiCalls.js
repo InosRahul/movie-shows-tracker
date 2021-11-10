@@ -1,24 +1,41 @@
 import {
   API_URL,
   API_KEY,
-  SEARCH_MOVIE_BASE_URL,
-  POPULAR_TV_BASE_URL,
+  TRENDING_MOVIE_BASE_URL,
+  TRENDING_TV_BASE_URL,
   POPULAR_MOVIE_BASE_URL,
-  SEARCH_TV_BASE_URL,
+  POPULAR_TV_BASE_URL,
+  TOPRATED_MOVIE_BASE_URL,
+  TOPRATED_TV_BASE_URL,
 } from 'helpers';
 
 export const apiCalls = {
-  fetchMovies: async (searchString, page) => {
-    const endpoint = searchString
-      ? `${SEARCH_MOVIE_BASE_URL}${searchString}&page=${page}`
-      : `${POPULAR_MOVIE_BASE_URL}&page=${page}`;
+  fetchMovies: async page => {
+    const endpoint = `${TRENDING_MOVIE_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
 
-  fetchShows: async (searchString, page) => {
-    const endpoint = searchString
-      ? `${SEARCH_TV_BASE_URL}${searchString}&page=${page}`
-      : `${POPULAR_TV_BASE_URL}&page=${page}`;
+  fetchShows: async page => {
+    const endpoint = `${TRENDING_TV_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+
+  fetchPopularMovies: async page => {
+    const endpoint = `${POPULAR_MOVIE_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchPopularShows: async page => {
+    const endpoint = `${POPULAR_TV_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+
+  fetchTopRatedMovies: async page => {
+    const endpoint = `${TOPRATED_MOVIE_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+
+  fetchTopRatedShows: async page => {
+    const endpoint = `${TOPRATED_TV_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
 
