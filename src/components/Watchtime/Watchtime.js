@@ -6,11 +6,10 @@ import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 export const Watchtime = () => {
   const { watched } = useContext(GlobalContext);
-  console.log(watched);
-  let totalWatchTimeMovies = watched
+  const totalWatchTimeMovies = watched
     .map(item => (item.runtime ? item.runtime : 0))
-    .reduce((prev, current) => prev + current);
-  let totalWatchTimeShow = watched
+    .reduce((prev, current) => prev + current, 0);
+  const totalWatchTimeShow = watched
     .filter(item => item.episode_run_time)
     .map(item =>
       item.episode_run_time.find(x => x !== undefined) *
@@ -21,7 +20,7 @@ export const Watchtime = () => {
           item.number_of_episodes
         : 0,
     )
-    .reduce((prev, curr) => prev + curr);
+    .reduce((prev, curr) => prev + curr, 0);
 
   let totalWatchTime = totalWatchTimeShow + totalWatchTimeMovies;
   return (
