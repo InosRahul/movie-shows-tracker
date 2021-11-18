@@ -20,19 +20,30 @@ export const Watched = () => {
       <div className="container">
         <div className="header">
           <h1 className="heading">Watched Movies and Shows</h1>
-
-          <span className="count-pill">
-            {movies > 0 ? (
-              movies > 1 ? (
-                movies + ' Movies,'
+          {watched.length ? (
+            <span className="count-pill">
+              {movies > 0 ? (
+                movies > 1 ? (
+                  movies + ' Movies '
+                ) : (
+                  movies + ' Movie '
+                )
               ) : (
-                movies + ' Movie,'
-              )
-            ) : (
-              <></>
-            )}{' '}
-            {shows > 0 ? shows > 1 ? shows + ' Shows' : shows + ' Show' : <></>}
-          </span>
+                <></>
+              )}{' '}
+              {shows > 0 ? (
+                shows > 1 ? (
+                  shows + ' Shows'
+                ) : (
+                  shows + ' Show'
+                )
+              ) : (
+                <></>
+              )}
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
 
         {watched.length > 0 ? (
